@@ -1,0 +1,183 @@
+/* 🌌 GALLERY CONTAINER */
+.gallery-container {
+  background: #0b0b0b; /* Aesthetic black theme */
+  min-height: 100vh;
+  padding: 40px 20px;
+  color: #f0f0f0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ✨ TITLE */
+.gallery-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #f5f5f5;
+  letter-spacing: 1px;
+  text-align: center;
+  text-transform: uppercase;
+  opacity: 0.9;
+}
+
+/* 🔘 TAB BUTTONS */
+.tab-buttons {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.tab {
+  background: transparent;
+  border: 1px solid #444;
+  padding: 8px 18px;
+  border-radius: 20px;
+  color: #ccc;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.tab.active,
+.tab:hover {
+  background: #1f1f1f;
+  color: #fff;
+  border-color: #666;
+}
+
+/* 🧩 POST FEED GRID */
+.post-feed {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+/* 🖼️ INDIVIDUAL POST CARD */
+.post-card {
+  background: #121212;
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+}
+
+.post-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.08);
+}
+
+/* 📝 CAPTION */
+.caption {
+  font-size: 0.95rem;
+  color: #ccc;
+  margin-bottom: 12px;
+  line-height: 1.4;
+  text-align: center;
+  letter-spacing: 0.4px;
+}
+
+/* 🖼️ PHOTO GRID BASE */
+.photo-grid {
+  display: grid;
+  gap: 8px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* For single image achievements */
+.photo-grid.single {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+/* For multi-image achievements */
+.photo-grid.multi {
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+}
+
+/* 🖼️ PHOTO ITEM CONTAINER */
+.photo-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 🖼️ IMAGE STYLING FIX */
+.photo-item img {
+  width: 100%;
+  height: auto;
+  max-height: 400px; /* Keeps consistent display height */
+  object-fit: contain; /* Prevents cropping */
+  border-radius: 12px;
+  display: block;
+  margin: 0 auto;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover lift & glow */
+.photo-item:hover img {
+  transform: scale(1.03);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
+}
+
+/* 🔍 ZOOM OVERLAY */
+.zoom-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 10, 10, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+}
+
+.zoom-img {
+  max-width: 90%;
+  max-height: 85vh;
+  border-radius: 12px;
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+  object-fit: contain;
+}
+
+/* 🧭 NAVIGATION BUTTONS */
+.nav-btn,
+.close-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: 0.3s ease;
+}
+
+.nav-btn:hover,
+.close-btn:hover {
+  opacity: 1;
+}
+
+.nav-btn.left {
+  left: 5%;
+}
+
+.nav-btn.right {
+  right: 5%;
+}
+
+.close-btn {
+  top: 8%;
+  right: 6%;
+  transform: none;
+}
