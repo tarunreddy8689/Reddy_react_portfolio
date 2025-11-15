@@ -16,6 +16,7 @@ export default function Contact() {
     subject: "",
     message: "",
   });
+
   const [status, setStatus] = useState("");
 
   const handleChange = (e) => {
@@ -25,64 +26,36 @@ export default function Contact() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Basic validation
     if (!form.name || !form.contact || !form.subject || !form.message) {
       setStatus("⚠️ Please fill in all fields.");
       return;
     }
 
-    const emailPattern = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
-    const isEmail = emailPattern.test(form.contact);
-    if (!isEmail && isNaN(form.contact)) {
-      setStatus("⚠️ Please enter a valid email or phone number.");
-      return;
-    }
-
     setStatus("Sending...");
 
-    const nodemailer = require("nodemailer");
+    const templateParams = {
+      from_name: form.name,
+      contact: form.contact,
+      subject: form.subject,
+      message: form.message,
+    };
 
-exports.handler = async (event) => {
-  if (event.httpMethod !== "POST") {
-    return { statusCode: 405, body: "Method Not Allowed" };
-  }
-
-  const { name, contact, subject, message } = JSON.parse(event.body);
-
-  // Configure transporter (use environment vars)
-  const transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-      user: process.env.EMAIL_USER, // your email
-      pass: process.env.EMAIL_PASS, // app password (strongly recommended)
-    },
-  });
-
-  const mailOptions = {
-    from: `"Website" <${process.env.EMAIL_USER}>`,
-    to: "tarunkumarreddy60922@gmail.com",
-    subject: `New contact form: ${subject || "No subject"}`,
-    text: `Name: ${name}\nContact: ${contact}\n\nMessage:\n${message}`,
-    html: `<p><strong>Name:</strong> ${name}</p><p><strong>Contact:</strong> ${contact}</p><p>${message}</p>`,
+    emailjs
+      .send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        templateParams,
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      )
+      .then(() => {
+        setStatus("✅ Message sent successfully!");
+        setForm({ name: "", contact: "", subject: "", message: "" });
+      })
+      .catch((error) => {
+        console.error(error);
+        setStatus("❌ Failed to send message. Try again.");
+      });
   };
-
-  try {
-    await transporter.sendMail(mailOptions);
-    return { statusCode: 200, body: JSON.stringify({ ok: true }) };
-  } catch (err) {
-    console.error(err);
-    return { statusCode: 500, body: JSON.stringify({ ok: false, error: err.message }) };
-  }
-};
-fetch("/.netlify/functions/sendForm", {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify(form),
-})
-.then(res => res.json())
-.then(() => { /* success UI */ })
-.catch(err => { /* error UI */ });
-  }
 
   const quickLinks = [
     { img: githubLogo, title: "GitHub", link: "https://github.com/tarunreddy8689" },
@@ -94,7 +67,6 @@ fetch("/.netlify/functions/sendForm", {
     { img: gmailLogo, title: "Email", link: "mailto:tarunkumarreddy6092@gmail.com" },
     { img: whatsappLogo, title: "WhatsApp", link: "https://wa.me/+918217351343" },
     { img: instagramLogo, title: "Instagram", link: "https://www.instagram.com/tarun__reddy/" },
-    
   ];
 
   return (
@@ -142,7 +114,7 @@ fetch("/.netlify/functions/sendForm", {
         Whether it’s a new project, a collaboration, or just to say hi — I’d love to hear from you!
       </motion.p>
 
-      {/* 🌟 Quick Links */}
+      {/* Quick Links */}
       <motion.div
         style={{
           display: "flex",
@@ -184,7 +156,7 @@ fetch("/.netlify/functions/sendForm", {
         ))}
       </motion.div>
 
-      {/* 💌 Contact Form */}
+      {/* Contact Form */}
       <motion.form
         onSubmit={handleSubmit}
         initial={{ opacity: 0, y: 30 }}
@@ -198,46 +170,11 @@ fetch("/.netlify/functions/sendForm", {
           maxWidth: "500px",
         }}
       >
-        <input
-          type="text"
-          name="name"
-          placeholder="Your Name"
-          value={form.name}
-          onChange={handleChange}
-          required
-          aria-label="Your name"
-          style={inputStyle}
-        />
-        <input
-          type="text"
-          name="contact"
-          placeholder="Your Email or Phone"
-          value={form.contact}
-          onChange={handleChange}
-          required
-          aria-label="Your contact info"
-          style={inputStyle}
-        />
-        <input
-          type="text"
-          name="subject"
-          placeholder="Subject"
-          value={form.subject}
-          onChange={handleChange}
-          required
-          aria-label="Subject"
-          style={inputStyle}
-        />
-        <textarea
-          name="message"
-          placeholder="Your Message..."
-          value={form.message}
-          onChange={handleChange}
-          required
-          rows="5"
-          aria-label="Your message"
-          style={{ ...inputStyle, resize: "none" }}
-        />
+        <input type="text" name="name" placeholder="Your Name" value={form.name} onChange={handleChange} required style={inputStyle} />
+        <input type="text" name="contact" placeholder="Your Email or Phone" value={form.contact} onChange={handleChange} required style={inputStyle} />
+        <input type="text" name="subject" placeholder="Subject" value={form.subject} onChange={handleChange} required style={inputStyle} />
+        <textarea name="message" placeholder="Your Message..." value={form.message} onChange={handleChange} required rows="5" style={{ ...inputStyle, resize: "none" }} />
+
         <motion.button
           type="submit"
           whileHover={{ scale: 1.05 }}
@@ -255,7 +192,6 @@ fetch("/.netlify/functions/sendForm", {
           🚀 Send Message
         </motion.button>
 
-        {/* Animated status */}
         {status && (
           <motion.p
             initial={{ opacity: 0, y: 5 }}
@@ -279,3 +215,5 @@ const inputStyle = {
   color: "#fff",
   outline: "none",
 };
+
+
