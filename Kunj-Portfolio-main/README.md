@@ -1,18 +1,18 @@
-# 💻 Kunj Desai — Portfolio Website
+# 💻 Reddy Desai — Portfolio Website
 Welcome to my personal portfolio website built with **React.js**, **Framer Motion**, and **modern UI design** principles.
-It showcases my work, projects, skills, and journey as a developer passionate about **AI, ML, and Web Technologies**.
+It showcases my work, projects, skills, and journey as a developer passionate about **Frontend Development, and Web Technologies**.
 
-🌐 **Website:** [[kunj-Portfolio]](https://kunj-desai.netlify.app/)
+🌐 **Website:** [[Reddy-Portfolio]](https://Reddy-desai.netlify.app/)
 
 🖼️ **Screenshots**
-<img width="1902" height="994" alt="Screenshot 2025-11-03 232447" src="![alt text](image.png)" />
-<img width="1894" height="992" alt="image" src="![alt text](image-1.png)" />
-<img width="1903" height="1044" alt="Screenshot 2025-11-04 153204" src="![alt text](image-2.png)" />
+<img width="1902" height="994" alt="Screenshot 2025-11-03 232447" src="![alt text](/src/portfolio images/image.png)" />
+<img width="1894" height="992" alt="image" src="![alt text](/src/portfolio images/image-1.png)" />
+<img width="1903" height="1044" alt="Screenshot 2025-11-04 153204" src="![alt text](/src/portfolio images/image-2.png)" />
 ---
 
 ## 🚀 Features
 
-* 🎨 **Modern UI/UX** with black-based aesthetic theme
+* 🎨 **Modern UI/UX** with black-based modern theme
 * ⚡ Smooth **Framer Motion** animations
 * 💼 **Projects, Resume, and Contact sections**
 * 🧠 Tech-focused portfolio highlighting projects
@@ -40,7 +40,7 @@ To run this project locally:
 
 ```bash
 # 1️⃣ Clone the repository
-git clone https://github.com/kunj2803/kunjdesai-portfolio.git
+git clone https://github.com/tarunreddy8689
 
 # 2️⃣ Navigate to project directory
 cd Tarun Reddy-portfolio
