@@ -2,7 +2,7 @@
 Welcome to my personal portfolio website built with **React.js**, **Framer Motion**, and **modern UI design** principles.
 It showcases my work, projects, skills, and journey as a developer passionate about **Frontend Development, and Web Technologies**.
 
-🌐 **Website:** [[Reddy-Portfolio]]((https://reddy-react-project.netlify.app/))
+🌐 **Website:** [[Reddy-Portfolio]](https://reddy-react-project.netlify.app/)
 
 🖼️ **Screenshots**
 <img width="1902" height="994" alt="Screenshot 2025-11-03 232447" src="![alt text](/assets/portfolio-images/image.png)" />
